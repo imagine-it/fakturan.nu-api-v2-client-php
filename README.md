@@ -1,5 +1,5 @@
 #Fakturan.nu REST API client PHP
-API-client in PHP for the web based software of [Fakturan.nu](https://fakturan.nu) based on [Trucker](https://github.com/Indatus/trucker). Dokumentation can be viewed at then [API documentation](https://fakturan.nu/apidocs/v2/).
+API-client in PHP for the web based software of [Fakturan.nu](https://fakturan.nu) based on [Trucker](https://github.com/Indatus/trucker). Documentation can be viewed at then [API documentation](https://fakturan.nu/apidocs/v2/).
 
 ##Getting started
 
