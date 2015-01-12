@@ -1,0 +1,35 @@
+{
+	"name": "fakturan.nu/fakturan",
+	"description": "REST API client for Fakturan.nu",
+	"keywords": ["Fakturan", "Invoice", "Invoicing", "API", "REST"],
+	"type": "API client",
+	"homepage": "https://fakturan.nu/apidocs",
+	"license": "MIT",
+	
+	"authors": [
+		{
+			"name": "Johan Tell",
+			"homepage": "http://mintcore.se",
+			"email": "johan@mintcore.se",
+			"role": "Developer"
+		}	
+	],
+	
+	"repositories": [
+		{
+			"type": "vcs",
+			"url": "https://github.com/imagine-it/fakturan-nu-php-api-client"
+		}
+	],
+	
+	"require": {
+		"indatus/trucker": "1.1-dev"
+	},
+	
+	"autoload": {
+		"psr-0": {
+			"Fakturan": "src/"
+		}
+	}
+}
+
