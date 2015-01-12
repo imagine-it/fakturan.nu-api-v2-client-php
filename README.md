@@ -1,2 +1,1 @@
-fakturan.nu-api-client-php
-==========================
+#Fakturan.nu REST API client PHP
