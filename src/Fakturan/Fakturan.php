@@ -1,5 +1,7 @@
 <?php
-require 'vendor/autoload.php';	
+
+namespace Fakturan;
+
 use Trucker\Facades\Config as TruckerConfig;	
 
 class Fakturan {
@@ -11,7 +13,3 @@ class Fakturan {
 	}
 	
 }
-
-require 'Fakturan/Model.php';	
-require 'Fakturan/Models/Client.php';
-require 'Fakturan/Models/Product.php';

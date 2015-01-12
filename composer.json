@@ -2,7 +2,7 @@
 	"name": "fakturan.nu/fakturan",
 	"description": "REST API client for Fakturan.nu",
 	"keywords": ["Fakturan", "Invoice", "Invoicing", "API", "REST"],
-	"type": "API client",
+	"type": "API-client",
 	"homepage": "https://fakturan.nu/apidocs",
 	"license": "MIT",
 	
@@ -18,12 +18,12 @@
 	"repositories": [
 		{
 			"type": "vcs",
-			"url": "https://github.com/imagine-it/fakturan-nu-php-api-client"
+			"url": "git@github.com:imagine-it/fakturan.nu-api-v2-client-php.git"
 		}
 	],
 	
 	"require": {
-		"indatus/trucker": "1.1-dev"
+		"indatus/trucker": "dev-master"
 	},
 	
 	"autoload": {
