@@ -1,9 +1,8 @@
 <?php
 namespace Fakturan\Model;
-
 use Fakturan;
 
-class Product extends Model
+class Product extends Fakturan\Model
 {
 	protected $uri = 'products';
 }
