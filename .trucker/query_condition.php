@@ -27,7 +27,7 @@
     |
     */
    
-    'driver' => 'get_array_params',
+    'driver' => 'get_plain_params',
 
 
     /*
