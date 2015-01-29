@@ -23,15 +23,17 @@
 		}
 	],
 	
-	"require": {
-		"indatus/trucker": "1.0.1"
-	},
-	
 	"autoload": {
 		"psr-0": {
 			"Fakturan": "src/",
 			"Trucker": "src/"
 		}
+	},
+	
+	"require": {
+		"indatus/trucker": "1.0.1"
 	}
+	
+	
 }
 
