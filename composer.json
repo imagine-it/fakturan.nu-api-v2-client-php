@@ -24,7 +24,7 @@
 	],
 	
 	"require": {
-		"indatus/trucker": "dev-master"
+		"indatus/trucker": "1.0.1"
 	},
 	
 	"autoload": {
