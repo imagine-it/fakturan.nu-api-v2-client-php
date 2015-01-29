@@ -29,8 +29,8 @@
 	
 	"autoload": {
 		"psr-0": {
-			"Fakturan": "src/",
-			"Trucker": "src/"
+			"Trucker": "src/",
+			"Fakturan": "src/"
 		}
 	}
 }
