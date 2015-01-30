@@ -34,7 +34,7 @@
 	},
 	
 	"require": {
-		"indatus/trucker": "dev-master"
+		"indatus/trucker": "master"
 	}
 	
 	
