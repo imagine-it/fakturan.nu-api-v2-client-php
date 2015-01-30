@@ -16,13 +16,6 @@
 		}	
 	],
 	
-	"repositories": [
-		{
-			"type": "vcs",
-			"url": "git@github.com:imagine-it/fakturan.nu-api-v2-client-php.git"
-		}
-	],
-	
 	"autoload": {
 		"psr-0": {
 			"Fakturan": "src/"
@@ -34,7 +27,6 @@
 	},
 	
 	"mimimum-stability": "dev"
-	
 	
 }
 
