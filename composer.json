@@ -20,10 +20,6 @@
 		{
 			"type": "vcs",
 			"url": "git@github.com:imagine-it/fakturan.nu-api-v2-client-php.git"
-		},
-		{
-			"type": "vcs",
-			"url": "git@github.com:Indatus/trucker.git"
 		}
 	],
 	
@@ -34,7 +30,7 @@
 	},
 	
 	"require": {
-		"Indatus/trucker": "dev-master"
+		"indatus/trucker": "dev-master"
 	}
 	
 	
