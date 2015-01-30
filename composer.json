@@ -30,8 +30,10 @@
 	},
 	
 	"require": {
-		"indatus/trucker": "dev-master"
-	}
+		"indatus/trucker": "1.1.*@dev"
+	},
+	
+	"mimimum-stability": "dev"
 	
 	
 }
