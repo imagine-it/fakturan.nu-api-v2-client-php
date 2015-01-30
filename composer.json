@@ -20,18 +20,21 @@
 		{
 			"type": "vcs",
 			"url": "git@github.com:imagine-it/fakturan.nu-api-v2-client-php.git"
+		},
+		{
+			"type": "vcs",
+			"url": "git@github.com:imagine-it/trucker.git"
 		}
 	],
 	
 	"autoload": {
 		"psr-0": {
-			"Fakturan": "src/",
-			"Trucker": "src/"
+			"Fakturan": "src/"
 		}
 	},
 	
 	"require": {
-		"indatus/trucker": "1.0.1"
+		"indatus/trucker": "dev-master"
 	}
 	
 	
