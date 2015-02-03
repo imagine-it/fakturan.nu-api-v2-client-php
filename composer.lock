@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "6677fc477ded308af0777d6cab4ae508",
+    "hash": "9b9541ae042d642732b096138b9dbaf0",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -339,7 +339,7 @@
         },
         {
             "name": "indatus/trucker",
-            "version": "dev-master",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Indatus/trucker.git",
@@ -509,7 +509,7 @@
         },
         {
             "name": "symfony/finder",
-            "version": "v2.5.9",
+            "version": "v2.5.10",
             "target-dir": "Symfony/Component/Finder",
             "source": {
                 "type": "git",
@@ -558,9 +558,7 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "indatus/trucker": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
