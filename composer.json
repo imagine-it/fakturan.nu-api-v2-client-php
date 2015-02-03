@@ -23,10 +23,7 @@
 	},
 	
 	"require": {
-		"indatus/trucker": "1.1.*@dev"
-	},
-	
-	"mimimum-stability": "dev"
-	
+		"indatus/trucker": "1.0.2"
+	}	
 }
 
