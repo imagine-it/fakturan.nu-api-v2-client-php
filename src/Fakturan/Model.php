@@ -12,25 +12,6 @@ use Trucker\Facades\AuthFactory;
 
 class Model extends Trucker\Resource\Model {
 
-	public $attributes_in_scope = false;
-
-	/**
-	 * Getter function to access the
-	 * underlying attributes array for the
-	 * entity 
-	 * 
-	 * @return arrayhttpStatusError
-	 */
-	public function attributes()
-	{
-		if($this->attributes_in_scope)
-			return array(strtolower($this->getResourceName()) => $this->properties);
-		
-		return parent::attributes();
-	}
-
-
-
 	/**
 	 * Function to handle persistance of the entity across the
 	 * remote API.	Function will handle either a CREATE or UPDATE
