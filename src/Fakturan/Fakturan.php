@@ -13,14 +13,6 @@ class Fakturan {
     'version' => 2,
     'sandbox' => false
   ];
-  
-/*
-  protected static $protocol = 'https';
-  protected static $domain = 'fakturan.nu/api';
-  protected static $version = 2;
-  protected static $sandbox = false;
-*/
-
 
 
   #
