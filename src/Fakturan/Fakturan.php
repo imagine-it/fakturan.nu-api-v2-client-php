@@ -1,71 +1,46 @@
 <?php
 
 namespace Fakturan;
-use Exception;
-use Trucker\Facades\Config as TruckerConfig;	
 
 class Fakturan {
   
-  protected static $properties = [
-    'protocol' => 'https',
+  private static $username;
+  private static $password;
+  
+  private static $options = [
+	  'protocol' => 'https',
     'domain' => 'fakturan.nu',
     'uri' => 'api',
     'version' => 2,
     'sandbox' => false
   ];
-
-
+  
   #
   #
   #
-	public static function setup($username, $password)
-	{
-		TruckerConfig::set('auth.driver', 'basic');
-		TruckerConfig::set('auth.basic.username', $username);
-		TruckerConfig::set('auth.basic.password', $password);
-		
-		
-		# Setup config for fakturan
-		self::set_endpoint();
-		TruckerConfig::set('request.http_method_param', '_method');
-		
-		# Setup for query conditions
-		TruckerConfig::set('query_condition.driver', 'get_plain_params');
-
-	}
-
-	#
-	#
-	#
-	public static function set($property, $value)
-	{
-    if(!isset(self::$properties[$property])) throw new Exception("The property `$property` is not a valid setting");
-    
-  	self::$properties[$property] = $value;  	
-  	self::set_endpoint();
-	}
+  public static function setup($username, $password, $options = [])
+  {
+	  self::$username = $username;
+	  self::$password = $password;
+	  self::$options = array_merge(self::$options, $options);
+  }
+  
+  public static function username(){ return self::$username; }
+  public static function password(){ return self::$password; }
 	
 	#
 	#
 	#
-	public static function get($property)
+	public static function base_url()
 	{
-  	return self::$properties[$property];
-	}
-	
-	#
-	#
-	#
-	private static function set_endpoint()
-	{
-  	$url = self::$properties['protocol'].'://';
+  	$url = self::$options['protocol'].'://';
   	
   	# Add sandbox to endpoint if we want to use sandbox
-  	if(self::$properties['sandbox']) $url .= 'sandbox.';	
+  	if(self::$options['sandbox']) $url .= 'sandbox.';	
   	
-  	$url .= self::$properties['domain'].'/'.self::$properties['uri'].'/v'.self::$properties['version'];
+  	$url .= self::$options['domain'].'/'.self::$options['uri'].'/v'.self::$options['version'].'/';
   	
-  	TruckerConfig::set('request.base_uri', $url);  	
+  	return $url; 	
 	}
 	
 }
