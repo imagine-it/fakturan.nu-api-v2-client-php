@@ -13,11 +13,15 @@ class InvoiceTest extends PHPUnit_Framework_TestCase
 	public static function setUpBeforeClass()
 	{	
 		self::$invoice_defaults = ['date' => '2015-01-01'];
-			
+		
 		VCR::insertCassette('invoice_requests');
 	} 
+	
 
-
+	#
+	# Actual tests
+	#
+	
 
 	public function testCanAddRowsFromProductWithOverrides()
 	{
@@ -78,6 +82,20 @@ class InvoiceTest extends PHPUnit_Framework_TestCase
 			
 		$this->assertEquals([$expected], $invoice->rows);
 
+	}
+	
+	public function testCanSaveInvoiceWithMultipleRows()
+	{
+		$invoice = new Invoice(self::$invoice_defaults);
+		$invoice->client_id = 2;
+
+		$product = Product::find(31);
+		
+		$invoice->addRow($product, ['amount' => '5', 'product_price' => '50.0']);
+		$invoice->addRow($product, ['amount' => '5', 'product_price' => '51.0']);
+		$invoice->addRow($product, ['amount' => '5', 'product_price' => '52.0']);
+			
+		$this->assertEquals(true, $invoice->save());
 	}
 	
 }
