@@ -4,13 +4,13 @@ namespace Fakturan;
 
 use Fakturan\Resources\Collection;
 use Fakturan\Resources\Instance;
+use Fakturan\Requests\JsonRequest;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Ring\Exception\ConnectException;
 
-
 class Model {
 	
-	protected $uri = '';
+	protected $uri = null;
 	protected $primary_key = 'id';
 
 	private $attributes = [];
@@ -23,7 +23,7 @@ class Model {
 	 */
 	public function __construct($attributes = [])
 	{
-		$this->attributes = $attributes;
+		$this->updateAttributes($attributes);
 	}
 	
 	public function __set($property, $value) { $this->attributes[$property] = $value; }
@@ -33,11 +33,9 @@ class Model {
 	/**
 	 *
 	 */	
-	public static function find($key, $params = [])
+	public static function find($id, $params = [])
 	{
-		$model = new static;
-    return Instance::fetch($model, $key, $params);
-
+    return self::fetch($id, $params);
 	}
 	
 	/**
@@ -45,8 +43,7 @@ class Model {
 	 */
 	public static function all($params = [])
 	{
-		$model = new static;
-		return Collection::fetch($model, $params);
+		return self::fetch(null, $params);
 	}
 	
 	/**
@@ -54,7 +51,14 @@ class Model {
 	 */
 	public function save()
 	{
-		return $this->query('save');		
+		if($this->persistent)
+		{
+			return $this->commit('update', $this->attributes());
+		}
+		else
+		{
+			return $this->commit('create', $this->attributes());
+		}	
 	}
 	
 	/**
@@ -62,7 +66,7 @@ class Model {
 	 */
 	public function destroy()
 	{
-		return $this->query('destroy');
+		return $this->commit('destroy');
 	}
 	
 	/**
@@ -84,8 +88,22 @@ class Model {
 	#
 	#
 	#
-	public function getUri()
+	public function updateAttributes($attributes)
 	{
+		$this->attributes = $attributes;
+		return $this;
+	}
+		
+	#
+	#
+	#
+	public function getUri($id = null)
+	{		
+		if($id)
+		{
+			return $this->uri.'/'.$id;
+		}
+
 		return $this->uri;
 	}
 	
@@ -114,17 +132,53 @@ class Model {
 		return json_encode($this->attributes());
 	}	
 	
+	#
+	#
+	#
+	private static function fetch($id = null, $params = [])
+	{
+		try {
+			$model = new static();			
+			$response = self::sendRequest('GET', $model->getUri($id), $params);
+			
+			if($id)
+			{	
+				$model->persistent = true;
+				return $model->updateAttributes($response['data']);
+			}
+			else
+			{
+				return new Collection($model, $response);
+			}			
+		}
+		catch(RequestException $e)
+		{
+			throw $e;
+		}
+	}
 	
 	#
 	#
 	#
-	private function query($type)
+	private function commit($action)
 	{
 		try 
 		{
-			$response = call_user_func("Fakturan\Resources\Instance::$type", $this);	
-			if(!$this->persistent)
+			if($action == 'create')
 			{
+				$response = self::sendRequest('POST', $this->getUri(), null, $this->attributes());
+			}
+			else if($action == 'update')
+			{
+				$response = self::sendRequest('PUT', $this->getUri($this->id), null, $this->attributes());
+			}
+			else if($action == 'destroy')
+			{
+				$response = self::sendRequest('DELETE', $this->getUri($this->id));
+			}
+			
+			if($action !== 'destroy' AND !$this->persistent)
+			{								
 				$this->attributes = $response['data'];
 				$this->persistent = true;
 			}			
@@ -132,8 +186,20 @@ class Model {
 		}
 		catch(RequestException $e)
 		{
-			$this->errors = $e->getResponse()->json()['error'];
+			if($e->hasResponse())
+			{
+				$this->errors = $e->getResponse()->json()['errors'];
+			}
 			return false;
 		}
+	}
+	
+	#
+	#
+	#
+	private static function sendRequest($type, $uri, $url_params = [], $body = null)
+	{		
+		$request = new JsonRequest($type, $uri, $url_params, $body);		
+		return $request->send();
 	}
 }

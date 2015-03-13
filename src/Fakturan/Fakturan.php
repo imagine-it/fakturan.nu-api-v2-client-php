@@ -1,9 +1,11 @@
 <?php
 
 namespace Fakturan;
+use GuzzleHttp\Client as Client;
 
 class Fakturan {
   
+  private static $client;
   private static $username;
   private static $password;
   
@@ -15,18 +17,32 @@ class Fakturan {
     'sandbox' => false
   ];
   
+  
+  
   #
   #
   #
   public static function setup($username, $password, $options = [])
   {
+	  self::$options = array_merge(self::$options, $options);
+	  
 	  self::$username = $username;
 	  self::$password = $password;
-	  self::$options = array_merge(self::$options, $options);
   }
   
-  public static function username(){ return self::$username; }
-  public static function password(){ return self::$password; }
+	public static function client()
+	{ 
+		return new Client([
+			'base_url' => self::base_url(),			
+			'defaults' => [
+				'auth' => [self::$username, self::$password],
+				'headers' => [			
+	        'Accept' => 'application/json',
+	        'Accept-Encoding' => 'utf-8'
+				]
+			]
+		]); 
+	}
 	
 	#
 	#

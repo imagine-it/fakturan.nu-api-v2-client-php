@@ -13,42 +13,64 @@ class Collection implements \Iterator {
 	#
 	#
 	#
-	public function __construct($collection)
+	public function __construct($model, $collection)
 	{
-		$this->collection = $collection;
+		$this->model = $model;
 		$this->position = 0;
-	}
-	
-	#
-	#
-	#
-	public static function fetch($model, $params = [])
-	{
-		$items = Transport::instance()->get($model->getUri(), $params);
 		
-		$collection = [];
-		foreach($items['data'] as $item)
+		foreach($collection['data'] as $item)
 		{
-			array_push($collection, Instance::factory($model, $item));
+			array_push($this->collection, new $model($item));
 		}
-				
-		return new static($collection);
-	}	
-	
-	#
-	#
-	#
-	public function next_page()
-	{
+
+		$this->pagination = json_decode(json_encode($collection['paging']));
 		
+	}
+	
+	
+	public function count()
+	{
+		return count($this->collection);
 	}
 	
 	#
 	#
 	#
-	public function previous_page()
+	public function totalPages()
 	{
-		
+		return $this->pagination->total_pages;
+	}
+	
+	#
+	#
+	#
+	public function currentPage()
+	{
+		return $this->pagination->current_page;
+	}
+	
+	#
+	#
+	#
+	public function nextPage()
+	{
+		if($this->totalPages() > $this->currentPage())
+		{
+			return self::fetch($this->model, ['page' => $this->currentPage() + 1]);
+		}
+		return null;
+	}
+	
+	#
+	#
+	#
+	public function previousPage()
+	{
+		if($this->currentPage !== 1 AND $this->totalPages() < $this->currentPage())
+		{
+			return self::fetch($this->model, ['page' => $this->currentPage() - 1]);
+		}
+		return null;
 	}
 	
 	#
