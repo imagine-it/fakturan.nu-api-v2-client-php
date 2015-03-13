@@ -2,7 +2,6 @@
 
 use Fakturan\Fakturan;	
 use Fakturan\Model;	
-use Fakturan\Product;
 use VCR\VCR;
 
 class TestModel extends Model { protected $uri = 'tests'; }
@@ -14,10 +13,10 @@ class ModelTest extends PHPUnit_Framework_TestCase
 	
 	public static function setUpBeforeClass()
 	{
-		Fakturan::setup('-VrmL6FGj6c61srVkM9H', 'bVSNkch6dam9R0-8OKwIGK1YRdbtefEYy-fFTDTJ', [
-			'protocol' => 'http',
-			'domain' => '0.0.0.0:3000'
-		]);
+		#Fakturan::setup('-VrmL6FGj6c61srVkM9H', 'bVSNkch6dam9R0-8OKwIGK1YRdbtefEYy-fFTDTJ', [
+		#	'protocol' => 'http',
+		#	'domain' => '0.0.0.0:3000'
+		#]);
 
 		VCR::insertCassette('test_record');
 
@@ -89,17 +88,5 @@ class ModelTest extends PHPUnit_Framework_TestCase
 		$item->record = 'new';
 		$this->assertEquals(true, $item->save());
 		$this->assertEquals(['id' => 1, 'record' => 'new'], $item->attributes());
-	}
-
-/*
-	public function testCanUpdatePersistentItem()
-	{
-		$item = Product::find(1);
-		$item->name = 'new name';
-		$this->assertEquals(true, $item->save());
-		$this->assertEquals(['id' => 1, 'record' => 'new'], $item->attributes());
-	}
-*/
-
-	
+	}	
 }
