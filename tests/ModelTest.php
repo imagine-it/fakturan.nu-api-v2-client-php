@@ -14,7 +14,7 @@ class ModelTest extends PHPUnit_Framework_TestCase
 	
 	public static function setUpBeforeClass()
 	{		
-		VCR::insertCassette('base_model_request');
+		VCR::insertCassette('base_model_requests');
 	} 
 
 	
@@ -22,7 +22,6 @@ class ModelTest extends PHPUnit_Framework_TestCase
 	#
 	# Actual tests
 	#
-
 
 	public function testNewInstanceIsNotPersistent()
 	{
