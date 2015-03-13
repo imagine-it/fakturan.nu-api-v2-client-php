@@ -2,6 +2,7 @@
 
 use Fakturan\Fakturan;	
 use Fakturan\Model;	
+use Fakturan\Product;
 use VCR\VCR;
 
 class TestModel extends Model { protected $uri = 'tests'; }
@@ -12,7 +13,7 @@ class ModelTest extends PHPUnit_Framework_TestCase
 	protected static $model;
 	
 	public static function setUpBeforeClass()
-	{
+	{		
 		VCR::insertCassette('base_model_request');
 	} 
 
@@ -21,6 +22,7 @@ class ModelTest extends PHPUnit_Framework_TestCase
 	#
 	# Actual tests
 	#
+
 
 	public function testNewInstanceIsNotPersistent()
 	{
@@ -83,4 +85,11 @@ class ModelTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals(true, $item->save());
 		$this->assertEquals(['id' => 1, 'record' => 'new'], $item->attributes());
 	}	
+	
+
+	public function testCanDestroyItem()
+	{
+		$item = TestModel::find(1);
+		$this->assertEquals(true, $item->destroy());
+	}
 }
