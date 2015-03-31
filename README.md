@@ -1,5 +1,5 @@
 #Fakturan.nu REST API client PHP
-API-client in PHP for the web based software of [Fakturan.nu](https://fakturan.nu) based on [Trucker](https://github.com/Indatus/trucker). Documentation can be viewed at [API documentation](https://fakturan.nu/apidocs/v2/).
+API-client in PHP for the web based software of [Fakturan.nu](https://fakturan.nu). Documentation can be viewed at [API documentation](https://sandbox.fakturan.nu/apidocs/).
 
 ##Getting started
 
@@ -32,7 +32,8 @@ Create a new product
 	$new_product->save();
 	
 Get a single product with id 54
-	Fakturan\Model\Product(54);
+
+	$book = Fakturan\Model\Product::find(54);
 	
 Edit product
 
