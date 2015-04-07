@@ -10,6 +10,7 @@ class Invoice extends Model
 	#
 	public function addRow($product, $overrides = [])
 	{
+		
 		if(!is_array($product)){
 			$product = $product->toRow($overrides);
 		}

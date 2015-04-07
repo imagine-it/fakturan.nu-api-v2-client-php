@@ -1,6 +1,6 @@
 <?php
 	
-use \Fakturan\Fakturan;	
+use Fakturan\Fakturan;	
 	
 class FakturanTest extends PHPUnit_Framework_TestCase
 {
@@ -26,7 +26,7 @@ class FakturanTest extends PHPUnit_Framework_TestCase
 	
 	public function testCorrectlyReturnsInstanceOfClient()
 	{
-		$this->assertInstanceOf('GuzzleHttp\Client', Fakturan::client());
+		$this->assertInstanceOf('GuzzleHttp\Client', Fakturan::api_client());
 	}
 	
 }

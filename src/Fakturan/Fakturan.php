@@ -5,7 +5,6 @@ use GuzzleHttp\Client as Client;
 
 class Fakturan {
   
-  private static $client;
   private static $username;
   private static $password;
   
@@ -30,7 +29,7 @@ class Fakturan {
 	  self::$password = $password;
   }
   
-	public static function client()
+	public static function api_client()
 	{ 
 		return new Client([
 			'base_url' => self::base_url(),			

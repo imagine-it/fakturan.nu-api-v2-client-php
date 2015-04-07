@@ -27,7 +27,7 @@ class Model {
 	}
 	
 	public function __set($property, $value) { $this->attributes[$property] = $value; }
-	public function __get($property) { return array_key_exists($property, $this->attributes) ? $this->attributes[$property] : null; }
+	public function __get($property){ return array_key_exists($property, $this->attributes) ? $this->attributes[$property] : NULL; }
 
 	
 	/**
@@ -97,7 +97,7 @@ class Model {
 	#
 	#
 	#
-	public function getUri($id = null)
+	public function getUri($id = NULL)
 	{		
 		if($id)
 		{
@@ -135,14 +135,19 @@ class Model {
 	#
 	#
 	#
-	private static function fetch($id = null, $params = [])
+	private static function fetch($id = NULL, $params = [])
 	{
 		try {
 			$model = new static();			
 			$response = self::sendRequest('GET', $model->getUri($id), $params);
 			
 			if($id)
-			{	
+			{					
+				if($response === NULL)
+				{
+					return NULL;
+				}
+				
 				$model->persistent = true;
 				return $model->updateAttributes($response['data']);
 			}
@@ -166,11 +171,11 @@ class Model {
 		{
 			if($action == 'create')
 			{
-				$response = self::sendRequest('POST', $this->getUri(), null, $this->attributes());
+				$response = self::sendRequest('POST', $this->getUri(), NULL, $this->attributes());
 			}
 			else if($action == 'update')
 			{
-				$response = self::sendRequest('PUT', $this->getUri($this->id), null, $this->attributes());
+				$response = self::sendRequest('PUT', $this->getUri($this->id), NULL, $this->attributes());
 			}
 			else if($action == 'destroy')
 			{

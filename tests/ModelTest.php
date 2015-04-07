@@ -69,9 +69,10 @@ class ModelTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals(true, $model->save());
 	}
 
-	
+
 	public function testErrorReturnsFalseAndAddsErrors()
 	{
+		$this->setExpectedException('Fakturan\Error\ResourceInvalid');
 		$model = new TestModel(['name' => '']);		
 		$this->assertEquals(false, $model->save());
 		$this->assertSame(['name' => ["cannot be blank"]], $model->errors());
