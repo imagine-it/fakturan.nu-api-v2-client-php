@@ -98,13 +98,13 @@ catch(Fakturan\Error\FakturanException $e)
 The API will answer with different kinds of Exceptions depending on type of issue:
 
 ```php
-Fakturan\Error\AccessDenied 			// Catches 401 (access denied) 
-Fakturan\Error\ResourceNotFound 	// Catches 404 (Resource not found). 
-Fakturan\Error\ConnectionFailed 	// Catches 407 (Connection to server failed).
-Fakturan\Error\ResourceInvalid 		// Catches 422 (Validation errors).
+Fakturan\Error\AccessDenied				// Catches 401 (access denied) 
+Fakturan\Error\ResourceNotFound		// Catches 404 (Resource not found). 
+Fakturan\Error\ConnectionFailed		// Catches 407 (Connection to server failed).
+Fakturan\Error\ResourceInvalid		// Catches 422 (Validation errors).
 Fakturan\Error\ClientError				// catches 400-499 (Client errors).
 Fakturan\Error\ServerError				// Catches 500-599 (Server related issues).
-Fakturan\Error\FakturanException 	// Catches all of the above
+Fakturan\Error\FakturanException	// Catches all of the above
 ```
 
 As they all inherits from `Fakturan\Error\FakturanException` they can all be caught within one catch-block:
