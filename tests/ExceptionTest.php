@@ -54,17 +54,17 @@ class ExceptionTest extends PHPUnit_Framework_TestCase
 		$client = Client::find(1);
 	}
 	
-	public function testThrowsResourceNotFound()
+	public function testDoesNotThrowResourceNotFoundOnModel()
 	{
-		$this->setExpectedException('Fakturan\Error\ResourceNotFound');
 		$client = Client::find(999999999999999999);
+		$this->assertEquals(NULL, $client);
 	}
 	
-	public function testThrowsResourceInvalid()
+	public function testDoesNotThrowResourceInvalidOnModel()
 	{
-		$this->setExpectedException('Fakturan\Error\ResourceInvalid');
 		$client = new Client(['name' => false]);
 		$client->save();
+		$this->assertEquals(true, (bool) $client->errors());
 	}
 	
 	# Fixture includes an answer with 500-error

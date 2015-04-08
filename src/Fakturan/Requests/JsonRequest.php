@@ -14,6 +14,7 @@ use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ServerException;
 use GuzzleHttp\Exception\TransferException;
 use GuzzleHttp\Ring\Exception\ConnectException;
+use GuzzleHttp\Message\Request;
 		
 class JsonRequest {
 	
@@ -46,34 +47,33 @@ class JsonRequest {
 		}		
 		catch(ParseException $e)
 		{
-			throw new ClientError($e->getMessage);
+			throw new ClientError($e);
 		}
 		catch(ClientException $e)
 		{
-			$response = $e->getResponse();
-						
+			$response = $e->getResponse();		
 			switch($response->getStatusCode())
 			{
 				case 401:
 					throw new AccessDenied($e->getMessage());
 					break;
 				case 404:
-					throw new ResourceNotFound($e->getMessage());
+					throw new ResourceNotFound($e);
 					break;
 				case 407:
 					throw new ConnectionFailed($e->getMessage());
 					break;
 				case 422:
-					throw new ResourceInvalid($e->getMessage());
+					throw new ResourceInvalid($e, $e->getRequest(), $e->getResponse());
 					break;
 				default:
-					throw new ClientError($$e->getMessage());
+					throw new ClientError($e->getMessage());
 					break;
 			}	
 		}
 		catch(ConnectException $e)
 		{
-			throw new ConnectionFailed($e);
+			throw new ConnectionFailed($e->getMessage());
 		}
 		catch(ServerException $e)
 		{
@@ -85,7 +85,7 @@ class JsonRequest {
 		}
 		catch(RequestException $e)
 		{ 
-			throw new FakturanException($e); 
+			throw new FakturanException($e->getMessage()); 
 		}
 		
 	}

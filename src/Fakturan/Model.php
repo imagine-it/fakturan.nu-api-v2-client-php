@@ -7,6 +7,9 @@ use Fakturan\Resources\Instance;
 use Fakturan\Requests\JsonRequest;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Ring\Exception\ConnectException;
+use Fakturan\Error\ResourceInvalid;
+use Fakturan\Error\ResourceNotFound;
+
 
 class Model {
 	
@@ -156,9 +159,9 @@ class Model {
 				return new Collection($model, $response);
 			}			
 		}
-		catch(RequestException $e)
+		catch(ResourceNotFound $e)
 		{
-			throw $e;
+			return NULL;
 		}
 	}
 	
@@ -189,9 +192,9 @@ class Model {
 			}			
 			return true;
 		}
-		catch(RequestException $e)
+		catch(ResourceInvalid $e)
 		{
-			if($e->hasResponse())
+			if($e->getResponse())
 			{
 				$this->errors = $e->getResponse()->json()['errors'];
 			}
