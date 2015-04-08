@@ -27,6 +27,18 @@ class Collection implements \Iterator {
 		
 	}
 	
+	#
+	#
+	#
+	public function concat(Collection $collection)
+	{
+		foreach($collection as $item)
+		{
+			array_push($this->collection, $item);
+		}
+		return $this;
+	}
+	
 	
 	public function count()
 	{
@@ -56,6 +68,7 @@ class Collection implements \Iterator {
 	{
 		if($this->totalPages() > $this->currentPage())
 		{
+			return call_user_func(get_class($this->model) . '::all', ['page' => $this->currentPage() + 1]);
 			return self::fetch($this->model, ['page' => $this->currentPage() + 1]);
 		}
 		return null;
@@ -68,6 +81,7 @@ class Collection implements \Iterator {
 	{
 		if($this->currentPage !== 1 AND $this->totalPages() < $this->currentPage())
 		{
+			return call_user_func($this->model->name. '::fetch', ['page' => $this->currentPage() - 1]);
 			return self::fetch($this->model, ['page' => $this->currentPage() - 1]);
 		}
 		return null;

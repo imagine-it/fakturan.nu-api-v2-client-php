@@ -8,7 +8,6 @@ use Fakturan\Error\ConnectionFailed;
 use Fakturan\Error\ResourceNotFound;
 use Fakturan\Error\ResourceInvalid;
 use Fakturan\Error\ServerError;		
-use Fakturan\Error\ValidationError;		
 use Fakturan\Error\FakturanException;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Exception\ClientException;
@@ -45,10 +44,12 @@ class JsonRequest {
 			$response = $this->client->send($request)->json();
 			return $response;
 		}		
-		catch(ParseException $e){
-			echo 'ParseException';
+		catch(ParseException $e)
+		{
+			throw new ClientError($e->getMessage);
 		}
-		catch(ClientException $e){
+		catch(ClientException $e)
+		{
 			$response = $e->getResponse();
 						
 			switch($response->getStatusCode())
@@ -70,17 +71,20 @@ class JsonRequest {
 					break;
 			}	
 		}
-		catch(ConnectException $e){
+		catch(ConnectException $e)
+		{
 			throw new ConnectionFailed($e);
 		}
-		catch(ServerException $e){
+		catch(ServerException $e)
+		{
 			throw new ServerError($e->getMessage());
 		}
 		catch(TransferException $e)
 		{
 			throw new ConnectionFailed($e->getMessage());
 		}
-		catch(RequestException $e){ 
+		catch(RequestException $e)
+		{ 
 			throw new FakturanException($e); 
 		}
 		
