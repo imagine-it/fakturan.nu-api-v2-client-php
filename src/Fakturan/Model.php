@@ -142,7 +142,7 @@ class Model {
 	{
 		try {
 			$model = new static();			
-			$response = self::sendRequest('GET', $model->getUri($id), $params);
+			$response = self::sendRequest('GET', $model->getUri($id), null, $params);
 			
 			if($id)
 			{					
