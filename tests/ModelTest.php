@@ -5,7 +5,7 @@ use Fakturan\Model;
 use Fakturan\Product;
 use VCR\VCR;
 
-class TestModel extends Model { protected $uri = 'tests'; }
+class TestModel extends Model { protected $uri = 'products'; }
 	
 class ModelTest extends PHPUnit_Framework_TestCase
 {
@@ -15,6 +15,10 @@ class ModelTest extends PHPUnit_Framework_TestCase
 	public static function setUpBeforeClass()
 	{		
 		VCR::insertCassette('base_model_requests');
+		Fakturan::setup('-VrmL6FGj6c61srVkM9H', 'bVSNkch6dam9R0-8OKwIGK1YRdbtefEYy-fFTDTJ', [
+			'protocol' => 'http',
+			'domain' => '0.0.0.0:3000'
+		]);
 	} 
 
 	
@@ -74,21 +78,21 @@ class ModelTest extends PHPUnit_Framework_TestCase
 	{
 		$model = new TestModel(['name' => '']);		
 		$this->assertEquals(false, $model->save());
-		$this->assertSame(['name' => ["cannot be blank"]], $model->errors());
+		$this->assertSame(['name' => [['error' => "blank"]]], $model->errors());
 	}
 	
 	public function testCanUpdatePersistentItem()
 	{
-		$item = TestModel::find(1);
+		$item = TestModel::find(31);
 		$item->record = 'new';
 		$this->assertEquals(true, $item->save());
-		$this->assertEquals(['id' => 1, 'record' => 'new'], $item->attributes());
+		$this->assertEquals(['id' => 31, 'record' => 'new'], ['id' => $item->id, 'record' => $item->record]);
 	}	
 	
 
 	public function testCanDestroyItem()
 	{
-		$item = TestModel::find(1);
+		$item = TestModel::find(76840);
 		$this->assertEquals(true, $item->destroy());
 	}
 }

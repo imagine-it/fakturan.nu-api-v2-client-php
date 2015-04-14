@@ -11,22 +11,14 @@ use VCR\VCR;
 	
 class ExceptionTest extends PHPUnit_Framework_TestCase
 {
-
-	public static function tearDownAfterClass()
-	{
-		Fakturan::setup('-VrmL6FGj6c61srVkM9H', 'bVSNkch6dam9R0-8OKwIGK1YRdbtefEYy-fFTDTJ', [
-			'protocol' => 'https',
-			'domain' => 'fakturan.nu'
-		]);
-	}	
 	
 	public function setUp()
 	{
     VCR::insertCassette('exception_requests');
-		
-		Fakturan::setup('-VrmL6FGj6c61srVkM9H', 'bVSNkch6dam9R0-8OKwIGK1YRdbtefEYy-fFTDTJ', [
-			'protocol' => 'https',
-			'domain' => 'fakturan.nu'
+    
+    Fakturan::setup('-VrmL6FGj6c61srVkM9H', 'bVSNkch6dam9R0-8OKwIGK1YRdbtefEYy-fFTDTJ', [
+			'protocol' => 'http',
+			'domain' => '0.0.0.0:3000'
 		]);
 	}
 	
@@ -47,7 +39,8 @@ class ExceptionTest extends PHPUnit_Framework_TestCase
 	{		
     
 		$this->setExpectedException('Fakturan\Error\ConnectionFailed');
-		Fakturan::setup('username', 'password', [
+		Fakturan::setup('-VrmL6FGj6c61srVkM9H', 'bVSNkch6dam9R0-8OKwIGK1YRdbtefEYy-fFTDTJ', [
+			'protocol' => 'http',
 			'domain' => 'localhost:1'
 		]);
 		
