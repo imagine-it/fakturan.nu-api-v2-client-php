@@ -10,7 +10,7 @@ API-client in PHP for the web based software of [Fakturan.nu](https://fakturan.n
 You can install the library via [Composer](http://getcomposer.org) by adding the following line to the require block of your composer.json file:
 
 ```json
-"fakturan.nu/fakturan": "1.0.0"
+"fakturan.nu/fakturan": "1.0.1"
 ```
   
 followed by running `composer install`.
