@@ -3,7 +3,7 @@
 	"description": "REST API client for Fakturan.nu",
 	"keywords": ["Fakturan", "Invoice", "Invoicing", "API", "REST"],
 	"type": "API-client",
-	"version": "0.4.1",
+	"version": "1.0.0",
 	"homepage": "https://fakturan.nu/apidocs",
 	"license": "MIT",
 	
