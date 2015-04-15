@@ -26,7 +26,7 @@ class Model {
 	 */
 	public function __construct($attributes = [])
 	{
-		$this->updateAttributes($attributes);
+		$this->attributes = $attributes;
 	}
 	
 	public function __set($property, $value) { $this->attributes[$property] = $value; }
@@ -83,18 +83,27 @@ class Model {
 	#
 	#
 	#
-	public function attributes()
+	public function attributes($filter_keys = false)
 	{
+		if($filter_keys)
+		{
+			if(!is_array($filter_keys))
+			{
+				$filter_keys = [$filter_keys];
+			}
+			
+			return array_intersect_key($this->attributes, array_flip($filter_keys));
+		}
 		return $this->attributes;
 	}
 	
 	#
 	#
 	#
-	public function updateAttributes($attributes)
+	public function updateAttributes($attributes = [])
 	{
-		$this->attributes = $attributes;
-		return $this;
+		$this->attributes = array_merge($this->attributes, $attributes);		
+		return $this->save();
 	}
 		
 	#
@@ -151,8 +160,9 @@ class Model {
 					return NULL;
 				}
 				
+				$model = new static($response['data']);
 				$model->persistent = true;
-				return $model->updateAttributes($response['data']);
+				return $model;
 			}
 			else
 			{

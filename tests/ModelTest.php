@@ -72,6 +72,13 @@ class ModelTest extends PHPUnit_Framework_TestCase
 		$model = new TestModel(['name' => 'test']);		
 		$this->assertEquals(true, $model->save());
 	}
+	
+	public function testUpdateAttributes()
+	{
+		$model = TestModel::find(76841);
+		$model->updateAttributes(['name' => 'changed name']);
+		$this->assertEquals(['id' => 76841, 'name' => 'changed name'], $model->attributes(['id', 'name']));
+	}
 
 
 	public function testErrorReturnsFalseAndAddsErrors()
