@@ -38,7 +38,7 @@ class JsonRequest {
 		
 		try {
 			$request = $this->client->createRequest($this->type, $this->uri, [
-				'json' => $this->body,
+				'json' => $this->body ? $this->body : '',
 				'query' => $this->params,
 				'exceptions' => true
 			]);

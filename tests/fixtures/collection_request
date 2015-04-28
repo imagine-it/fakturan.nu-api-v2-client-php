@@ -1,0 +1,103 @@
+
+-
+    request:
+        method: GET
+        url: 'https://sandbox.fakturan.nu/api/v2/products'
+        headers:
+            Host: sandbox.fakturan.nu
+            Expect: null
+            Authorization: 'Basic aldFNTZWbk9IcXUtNkhnYVp5TDI6THBkTG9yRzBmbVBSR09wZU92SFNMaXVsb0VISzBPOFlzS2xpVlBOWQ=='
+            Accept: application/json
+            Accept-Encoding: utf-8
+            User-Agent: 'Guzzle/5.2.0 curl/7.37.1 PHP/5.6.5'
+            Content-Type: application/json
+        body: '{"per_page":15}'
+    response:
+        status:
+            http_version: '1.1'
+            code: '200'
+            message: OK
+        headers:
+            Date: 'Tue, 28 Apr 2015 13:25:43 GMT'
+            Server: 'Apache/2.2.14 (Ubuntu)'
+            Strict-Transport-Security: max-age=31536000
+            X-Frame-Options: SAMEORIGIN
+            X-XSS-Protection: '1; mode=block'
+            X-Content-Type-Options: nosniff
+            ETag: '"4f8dbadedfd2240f47bf25a05e0c85f8"'
+            Cache-Control: 'max-age=0, private, must-revalidate'
+            X-Request-Id: 9f8b41f4-3c10-44d8-a379-e3ea3f3f2ae1
+            X-Runtime: '0.017243'
+            X-Powered-By: 'Phusion Passenger 4.0.50'
+            Status: '200 OK'
+            Transfer-Encoding: chunked
+            Content-Type: 'application/json; charset=utf-8'
+        body: '{"data":[{"id":2,"product_code":"","name":"A simple product","unit":"ST","price":"200.0","price_inc_tax":"250.0","tax":25},{"id":33,"product_code":"","name":"A simple product","unit":"","price":"200.0","price_inc_tax":"250.0","tax":25},{"id":34,"product_code":"","name":"A simple product","unit":"","price":"200.0","price_inc_tax":"250.0","tax":25},{"id":35,"product_code":"","name":"A simple product","unit":"","price":"200.0","price_inc_tax":"250.0","tax":25},{"id":32,"product_code":"","name":"Action figure of Spooderman","unit":"st","price":"1054.0","price_inc_tax":"1317.5","tax":25},{"id":3,"product_code":"","name":"Another simple product","unit":"KG","price":"123.0","price_inc_tax":"153.75","tax":25},{"id":24,"product_code":"","name":"Bleach","unit":"st","price":"2298.0","price_inc_tax":"2872.5","tax":25},{"id":18,"product_code":"","name":"Blue whales","unit":"st","price":"2345.0","price_inc_tax":"2931.25","tax":25},{"id":4,"product_code":"","name":"Boxes of salt","unit":"KG","price":"123.0","price_inc_tax":"153.75","tax":25},{"id":15,"product_code":"","name":"Candies with random taste","unit":"st","price":"3484.0","price_inc_tax":"4355.0","tax":25},{"id":23,"product_code":"","name":"Cheeseburger","unit":"st","price":"1168.0","price_inc_tax":"1460.0","tax":25},{"id":14,"product_code":"","name":"Clicks on button","unit":"st","price":"4927.0","price_inc_tax":"6158.75","tax":25},{"id":31,"product_code":"","name":"Cold dogs","unit":"st","price":"708.0","price_inc_tax":"885.0","tax":25},{"id":6,"product_code":"","name":"Colored feathers","unit":"KG","price":"2056.0","price_inc_tax":"2570.0","tax":25},{"id":16,"product_code":"","name":"Colors for fingerpainters","unit":"st","price":"3786.0","price_inc_tax":"4732.5","tax":25}],"paging":{"total_pages":3,"current_page":1,"next":"https://sandbox.fakturan.nu/api/v2/products?page=2\u0026per_page=15","previous":null}}'
+-
+    request:
+        method: GET
+        url: 'https://sandbox.fakturan.nu/api/v2/products'
+        headers:
+            Host: sandbox.fakturan.nu
+            Expect: null
+            Authorization: 'Basic aldFNTZWbk9IcXUtNkhnYVp5TDI6THBkTG9yRzBmbVBSR09wZU92SFNMaXVsb0VISzBPOFlzS2xpVlBOWQ=='
+            Accept: application/json
+            Accept-Encoding: utf-8
+            User-Agent: 'Guzzle/5.2.0 curl/7.37.1 PHP/5.6.5'
+            Content-Type: application/json
+        body: '{"page":"2","per_page":"15"}'
+    response:
+        status:
+            http_version: '1.1'
+            code: '200'
+            message: OK
+        headers:
+            Date: 'Tue, 28 Apr 2015 13:25:44 GMT'
+            Server: 'Apache/2.2.14 (Ubuntu)'
+            Strict-Transport-Security: max-age=31536000
+            X-Frame-Options: SAMEORIGIN
+            X-XSS-Protection: '1; mode=block'
+            X-Content-Type-Options: nosniff
+            ETag: '"b542d7d82a6379eda4179712e16e3015"'
+            Cache-Control: 'max-age=0, private, must-revalidate'
+            X-Request-Id: 3a943800-988c-497b-8309-7138672d28fc
+            X-Runtime: '0.016442'
+            X-Powered-By: 'Phusion Passenger 4.0.50'
+            Status: '200 OK'
+            Transfer-Encoding: chunked
+            Content-Type: 'application/json; charset=utf-8'
+        body: '{"data":[{"id":10,"product_code":"","name":"Foodtrucks","unit":"H","price":"1050.0","price_inc_tax":"1312.5","tax":25},{"id":5,"product_code":"","name":"Hairwigs","unit":"KG","price":"15134.0","price_inc_tax":"18917.5","tax":25},{"id":22,"product_code":"","name":"Hamburger","unit":"st","price":"1106.0","price_inc_tax":"1382.5","tax":25},{"id":28,"product_code":"","name":"Hand dryers","unit":"st","price":"445.0","price_inc_tax":"556.25","tax":25},{"id":30,"product_code":"","name":"Hot dogs","unit":"st","price":"3082.0","price_inc_tax":"3852.5","tax":25},{"id":19,"product_code":"","name":"Keychains","unit":"st","price":"2365.0","price_inc_tax":"2956.25","tax":25},{"id":9,"product_code":"","name":"Listening to other people","unit":"H","price":"3416.0","price_inc_tax":"4270.0","tax":25},{"id":8,"product_code":"","name":"Movies of people eating","unit":"ST","price":"880.0","price_inc_tax":"1100.0","tax":25},{"id":20,"product_code":"","name":"Mystic snakes","unit":"st","price":"448.0","price_inc_tax":"560.0","tax":25},{"id":21,"product_code":"","name":"Newspaper","unit":"st","price":"514.0","price_inc_tax":"642.5","tax":25},{"id":26,"product_code":"","name":"Old underwear","unit":"st","price":"1530.0","price_inc_tax":"1912.5","tax":25},{"id":17,"product_code":"","name":"Red roses","unit":"st","price":"895.0","price_inc_tax":"1118.75","tax":25},{"id":7,"product_code":"","name":"Small shoes","unit":"KG","price":"1533.0","price_inc_tax":"1916.25","tax":25},{"id":29,"product_code":"","name":"Soda","unit":"st","price":"2124.0","price_inc_tax":"2655.0","tax":25},{"id":25,"product_code":"","name":"Spicy curry","unit":"st","price":"3792.0","price_inc_tax":"4740.0","tax":25}],"paging":{"total_pages":3,"current_page":2,"next":"https://sandbox.fakturan.nu/api/v2/products?page=3\u0026per_page=15","previous":"https://sandbox.fakturan.nu/api/v2/products?page=1\u0026per_page=15"}}'
+-
+    request:
+        method: GET
+        url: 'https://sandbox.fakturan.nu/api/v2/products'
+        headers:
+            Host: sandbox.fakturan.nu
+            Expect: null
+            Authorization: 'Basic aldFNTZWbk9IcXUtNkhnYVp5TDI6THBkTG9yRzBmbVBSR09wZU92SFNMaXVsb0VISzBPOFlzS2xpVlBOWQ=='
+            Accept: application/json
+            Accept-Encoding: utf-8
+            User-Agent: 'Guzzle/5.2.0 curl/7.37.1 PHP/5.6.5'
+            Content-Type: application/json
+        body: '{"page":2,"per_page":15}'
+    response:
+        status:
+            http_version: '1.1'
+            code: '200'
+            message: OK
+        headers:
+            Date: 'Tue, 28 Apr 2015 13:25:44 GMT'
+            Server: 'Apache/2.2.14 (Ubuntu)'
+            Strict-Transport-Security: max-age=31536000
+            X-Frame-Options: SAMEORIGIN
+            X-XSS-Protection: '1; mode=block'
+            X-Content-Type-Options: nosniff
+            ETag: '"b542d7d82a6379eda4179712e16e3015"'
+            Cache-Control: 'max-age=0, private, must-revalidate'
+            X-Request-Id: 621fb522-ffb7-48a9-bf9b-93ee70874976
+            X-Runtime: '0.016395'
+            X-Powered-By: 'Phusion Passenger 4.0.50'
+            Status: '200 OK'
+            Transfer-Encoding: chunked
+            Content-Type: 'application/json; charset=utf-8'
+        body: '{"data":[{"id":10,"product_code":"","name":"Foodtrucks","unit":"H","price":"1050.0","price_inc_tax":"1312.5","tax":25},{"id":5,"product_code":"","name":"Hairwigs","unit":"KG","price":"15134.0","price_inc_tax":"18917.5","tax":25},{"id":22,"product_code":"","name":"Hamburger","unit":"st","price":"1106.0","price_inc_tax":"1382.5","tax":25},{"id":28,"product_code":"","name":"Hand dryers","unit":"st","price":"445.0","price_inc_tax":"556.25","tax":25},{"id":30,"product_code":"","name":"Hot dogs","unit":"st","price":"3082.0","price_inc_tax":"3852.5","tax":25},{"id":19,"product_code":"","name":"Keychains","unit":"st","price":"2365.0","price_inc_tax":"2956.25","tax":25},{"id":9,"product_code":"","name":"Listening to other people","unit":"H","price":"3416.0","price_inc_tax":"4270.0","tax":25},{"id":8,"product_code":"","name":"Movies of people eating","unit":"ST","price":"880.0","price_inc_tax":"1100.0","tax":25},{"id":20,"product_code":"","name":"Mystic snakes","unit":"st","price":"448.0","price_inc_tax":"560.0","tax":25},{"id":21,"product_code":"","name":"Newspaper","unit":"st","price":"514.0","price_inc_tax":"642.5","tax":25},{"id":26,"product_code":"","name":"Old underwear","unit":"st","price":"1530.0","price_inc_tax":"1912.5","tax":25},{"id":17,"product_code":"","name":"Red roses","unit":"st","price":"895.0","price_inc_tax":"1118.75","tax":25},{"id":7,"product_code":"","name":"Small shoes","unit":"KG","price":"1533.0","price_inc_tax":"1916.25","tax":25},{"id":29,"product_code":"","name":"Soda","unit":"st","price":"2124.0","price_inc_tax":"2655.0","tax":25},{"id":25,"product_code":"","name":"Spicy curry","unit":"st","price":"3792.0","price_inc_tax":"4740.0","tax":25}],"paging":{"total_pages":3,"current_page":2,"next":"https://sandbox.fakturan.nu/api/v2/products?page=3\u0026per_page=15","previous":"https://sandbox.fakturan.nu/api/v2/products?page=1\u0026per_page=15"}}'

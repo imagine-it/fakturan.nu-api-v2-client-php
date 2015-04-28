@@ -1,0 +1,102 @@
+
+-
+    request:
+        method: GET
+        url: 'https://sandbox.fakturan.nu/api/v2/clients'
+        headers:
+            Host: sandbox.fakturan.nu
+            Expect: null
+            Authorization: 'Basic LVZybUw2RkdqNmM2MXNyVmtNOUgtOmJWU05rY2g2ZGFtOVIwLThPS3dJR0sxWVJkYnRlZkVZeS1mRlREVEo='
+            Accept: application/json
+            Accept-Encoding: utf-8
+            User-Agent: 'Guzzle/5.2.0 curl/7.37.1 PHP/5.6.5'
+            Content-Type: application/json
+        body: '""'
+    response:
+        status:
+            http_version: '1.1'
+            code: '401'
+            message: Unauthorized
+        headers:
+            Date: 'Tue, 28 Apr 2015 13:25:44 GMT'
+            Server: 'Apache/2.2.14 (Ubuntu)'
+            Strict-Transport-Security: max-age=31536000
+            X-Frame-Options: SAMEORIGIN
+            X-XSS-Protection: '1; mode=block'
+            X-Content-Type-Options: nosniff
+            WWW-Authenticate: 'Basic realm="Application"'
+            Cache-Control: no-cache
+            X-Request-Id: d7334587-cae2-42c2-8a49-a37276181d78
+            X-Runtime: '0.002317'
+            X-Powered-By: 'Phusion Passenger 4.0.50'
+            Status: '401 Unauthorized'
+            Vary: Accept-Encoding
+            Transfer-Encoding: chunked
+            Content-Type: 'text/html; charset=utf-8'
+        body: "HTTP Basic: Access denied.\n"
+-
+    request:
+        method: GET
+        url: 'https://sandbox.fakturan.nu/api/v2/clients/999999999'
+        headers:
+            Host: sandbox.fakturan.nu
+            Expect: null
+            Authorization: 'Basic aldFNTZWbk9IcXUtNkhnYVp5TDI6THBkTG9yRzBmbVBSR09wZU92SFNMaXVsb0VISzBPOFlzS2xpVlBOWQ=='
+            Accept: application/json
+            Accept-Encoding: utf-8
+            User-Agent: 'Guzzle/5.2.0 curl/7.37.1 PHP/5.6.5'
+            Content-Type: application/json
+        body: '""'
+    response:
+        status:
+            http_version: '1.1'
+            code: '404'
+            message: 'Not Found'
+        headers:
+            Date: 'Tue, 28 Apr 2015 13:25:44 GMT'
+            Server: 'Apache/2.2.14 (Ubuntu)'
+            Strict-Transport-Security: max-age=31536000
+            X-Frame-Options: SAMEORIGIN
+            X-XSS-Protection: '1; mode=block'
+            X-Content-Type-Options: nosniff
+            Cache-Control: no-cache
+            X-Request-Id: 6f7d3953-25e9-4f88-b630-e8226a479643
+            X-Runtime: '0.012363'
+            X-Powered-By: 'Phusion Passenger 4.0.50'
+            Status: '404 Not Found'
+            Transfer-Encoding: chunked
+            Content-Type: 'application/json; charset=utf-8'
+        body: '{"error":"404 Not Found"}'
+-
+    request:
+        method: POST
+        url: 'https://sandbox.fakturan.nu/api/v2/clients'
+        headers:
+            Host: sandbox.fakturan.nu
+            Expect: null
+            Authorization: 'Basic aldFNTZWbk9IcXUtNkhnYVp5TDI6THBkTG9yRzBmbVBSR09wZU92SFNMaXVsb0VISzBPOFlzS2xpVlBOWQ=='
+            Accept: application/json
+            Accept-Encoding: utf-8
+            User-Agent: 'Guzzle/5.2.0 curl/7.37.1 PHP/5.6.5'
+            Content-Type: application/json
+        body: '{"name":false}'
+    response:
+        status:
+            http_version: '1.1'
+            code: '422'
+            message: 'Unprocessable Entity'
+        headers:
+            Date: 'Tue, 28 Apr 2015 13:25:44 GMT'
+            Server: 'Apache/2.2.14 (Ubuntu)'
+            Strict-Transport-Security: max-age=31536000
+            X-Frame-Options: SAMEORIGIN
+            X-XSS-Protection: '1; mode=block'
+            X-Content-Type-Options: nosniff
+            Cache-Control: no-cache
+            X-Request-Id: 1f0cde35-396e-42bb-b789-e53dfdeaf625
+            X-Runtime: '0.019622'
+            X-Powered-By: 'Phusion Passenger 4.0.50'
+            Status: '422 Unprocessable Entity'
+            Transfer-Encoding: chunked
+            Content-Type: 'application/json; charset=utf-8'
+        body: '{"errors":{"company":[{"error":"blank"}]}}'

@@ -1,0 +1,70 @@
+
+-
+    request:
+        method: GET
+        url: 'https://sandbox.fakturan.nu/api/v2/products/2'
+        headers:
+            Host: sandbox.fakturan.nu
+            Expect: null
+            Authorization: 'Basic aldFNTZWbk9IcXUtNkhnYVp5TDI6THBkTG9yRzBmbVBSR09wZU92SFNMaXVsb0VISzBPOFlzS2xpVlBOWQ=='
+            Accept: application/json
+            Accept-Encoding: utf-8
+            User-Agent: 'Guzzle/5.2.0 curl/7.37.1 PHP/5.6.5'
+            Content-Type: application/json
+        body: '""'
+    response:
+        status:
+            http_version: '1.1'
+            code: '200'
+            message: OK
+        headers:
+            Date: 'Tue, 28 Apr 2015 13:25:44 GMT'
+            Server: 'Apache/2.2.14 (Ubuntu)'
+            Strict-Transport-Security: max-age=31536000
+            X-Frame-Options: SAMEORIGIN
+            X-XSS-Protection: '1; mode=block'
+            X-Content-Type-Options: nosniff
+            ETag: '"f381a236ad72ce7551d49d2b832e4acf"'
+            Cache-Control: 'max-age=0, private, must-revalidate'
+            X-Request-Id: bd049fd7-79fd-485d-b044-f81377a51172
+            X-Runtime: '0.013528'
+            X-Powered-By: 'Phusion Passenger 4.0.50'
+            Status: '200 OK'
+            Transfer-Encoding: chunked
+            Content-Type: 'application/json; charset=utf-8'
+        body: '{"data":{"id":2,"product_code":"","name":"A simple product","unit":"ST","price":"200.0","price_inc_tax":"250.0","tax":25}}'
+-
+    request:
+        method: POST
+        url: 'https://sandbox.fakturan.nu/api/v2/invoices'
+        headers:
+            Host: sandbox.fakturan.nu
+            Expect: null
+            Authorization: 'Basic aldFNTZWbk9IcXUtNkhnYVp5TDI6THBkTG9yRzBmbVBSR09wZU92SFNMaXVsb0VISzBPOFlzS2xpVlBOWQ=='
+            Accept: application/json
+            Accept-Encoding: utf-8
+            User-Agent: 'Guzzle/5.2.0 curl/7.37.1 PHP/5.6.5'
+            Content-Type: application/json
+        body: '{"date":"2015-01-01","client_id":11,"rows":[{"product_id":2,"product_code":"","product_name":"A simple product","product_unit":"ST","product_price":"50.0","product_tax":25,"amount":5},{"product_id":2,"product_code":"","product_name":"A simple product","product_unit":"ST","product_price":"51.0","product_tax":25,"amount":5},{"product_id":2,"product_code":"","product_name":"A simple product","product_unit":"ST","product_price":"52.0","product_tax":25,"amount":5}]}'
+    response:
+        status:
+            http_version: '1.1'
+            code: '201'
+            message: Created
+        headers:
+            Date: 'Tue, 28 Apr 2015 13:25:44 GMT'
+            Server: 'Apache/2.2.14 (Ubuntu)'
+            Strict-Transport-Security: max-age=31536000
+            X-Frame-Options: SAMEORIGIN
+            X-XSS-Protection: '1; mode=block'
+            X-Content-Type-Options: nosniff
+            ETag: '"bed31bd93c23899b2c85991b3e7386da"'
+            Cache-Control: 'max-age=0, private, must-revalidate'
+            X-Request-Id: 1193d1f7-7dac-49ef-abd2-c543998dbfda
+            X-Runtime: '0.147967'
+            X-Powered-By: 'Phusion Passenger 4.0.50'
+            Location: 'https://sandbox.fakturan.nu/api/v2/invoices/10'
+            Status: '201 Created'
+            Transfer-Encoding: chunked
+            Content-Type: 'application/json; charset=utf-8'
+        body: '{"data":{"id":10,"number":6,"date":"2015-01-01","client_id":11,"days":30,"our_reference":"","your_reference":"","sent":false,"paid_at":null,"locale":"sv","currency":"SEK","settings":{"invoice_template":"original","prices_inc_tax":"no","show_product_code":false},"sum":"956.0","net":"765.0","tax":"191.25","tax_details":{"25":"191.25"},"address":{"name":"A simple client","street_address":"","care_of":"","zip_code":"","city":"","country":"SE"},"rows":[{"id":20,"product_id":2,"discount":0,"amount":"5.0","text":"","product_code":"","product_name":"A simple product","product_unit":"ST","product_price":"50.0","product_tax":25,"text_row":false,"sort_order":0,"tax_deductable":false},{"id":21,"product_id":2,"discount":0,"amount":"5.0","text":"","product_code":"","product_name":"A simple product","product_unit":"ST","product_price":"51.0","product_tax":25,"text_row":false,"sort_order":1,"tax_deductable":false},{"id":22,"product_id":2,"discount":0,"amount":"5.0","text":"","product_code":"","product_name":"A simple product","product_unit":"ST","product_price":"52.0","product_tax":25,"text_row":false,"sort_order":2,"tax_deductable":false}]}}'

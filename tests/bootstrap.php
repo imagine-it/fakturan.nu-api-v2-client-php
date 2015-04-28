@@ -22,7 +22,4 @@ use Fakturan\Fakturan;
 
 \VCR\VCR::turnOn();
 
-Fakturan::setup('-VrmL6FGj6c61srVkM9H', 'bVSNkch6dam9R0-8OKwIGK1YRdbtefEYy-fFTDTJ', [
-	'protocol' => 'http',
-	'domain' => '0.0.0.0:3000'
-]);
+Fakturan::setup('jWE56VnOHqu-6HgaZyL2', 'LpdLorG0fmPRGOpeOvHSLiuloEHK0O8YsKliVPNY', [ 'sandbox' => true ]);

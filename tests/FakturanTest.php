@@ -12,11 +12,7 @@ class FakturanTest extends PHPUnit_Framework_TestCase
 	
 	public static function tearDownAfterClass()
 	{
-		Fakturan::setup('-VrmL6FGj6c61srVkM9H', 'bVSNkch6dam9R0-8OKwIGK1YRdbtefEYy-fFTDTJ', [
-			'protocol' => 'http',
-			'domain' => '0.0.0.0:3000',
-			'sandbox' => false
-		]);
+		Fakturan::setup('jWE56VnOHqu-6HgaZyL2', 'LpdLorG0fmPRGOpeOvHSLiuloEHK0O8YsKliVPNY', ['sandbox' => true ]);
 	}
 	
 	#
@@ -25,7 +21,7 @@ class FakturanTest extends PHPUnit_Framework_TestCase
 
 	public function testAllowChangingOfEndpoint()
 	{
-		$this->assertEquals('http://sandbox.0.0.0.0:3000/api/v2/', Fakturan::base_url());
+		$this->assertEquals('https://sandbox.fakturan.nu/api/v2/', Fakturan::base_url());
 	}
 	
 	public function testCorrectlyReturnsInstanceOfClient()

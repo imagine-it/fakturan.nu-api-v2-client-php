@@ -15,16 +15,16 @@ class CollectionTest extends PHPUnit_Framework_TestCase
 
 	public function testCanConcatPaginatedPages()
 	{
-		$products = Product::all();
+		$products = Product::all(['per_page' => 15]);
 		$products = $products->nextPage()->concat($products);
-		$this->assertEquals(60, $products->count());
+		$this->assertEquals(30, $products->count());
 	}
 	
 	public function testCanConcatPaginatedPagesInLoop()
 	{
-		$products = Product::all();
-		$products->concat(Product::all(['page' => 2]));
-		$this->assertEquals(60, $products->count());
+		$products = Product::all(['per_page' => 15]);
+		$products->concat(Product::all(['page' => 2, 'per_page' => 15]));
+		$this->assertEquals(30, $products->count());
 	}
 	
 }

@@ -15,11 +15,7 @@ class ExceptionTest extends PHPUnit_Framework_TestCase
 	public function setUp()
 	{
     VCR::insertCassette('exception_requests');
-    
-    Fakturan::setup('-VrmL6FGj6c61srVkM9H', 'bVSNkch6dam9R0-8OKwIGK1YRdbtefEYy-fFTDTJ', [
-			'protocol' => 'http',
-			'domain' => '0.0.0.0:3000'
-		]);
+    Fakturan::setup('jWE56VnOHqu-6HgaZyL2', 'LpdLorG0fmPRGOpeOvHSLiuloEHK0O8YsKliVPNY', [ 'sandbox' => true , 'domain' => 'fakturan.nu']);
 	}
 	
 	#
@@ -32,24 +28,23 @@ class ExceptionTest extends PHPUnit_Framework_TestCase
 		$this->setExpectedException('Fakturan\Error\AccessDenied');
 		Fakturan::setup('-VrmL6FGj6c61srVkM9H-', 'bVSNkch6dam9R0-8OKwIGK1YRdbtefEYy-fFTDTJ');
 		Client::all();
+		$this->resetConnectionSettings();
 	}
 		
 	# As we cannot store fixtures to non-existent servers we point it at localhost:1
 	public function testThrowsConnectionFailed()
-	{		
-    
+	{	    
 		$this->setExpectedException('Fakturan\Error\ConnectionFailed');
-		Fakturan::setup('-VrmL6FGj6c61srVkM9H', 'bVSNkch6dam9R0-8OKwIGK1YRdbtefEYy-fFTDTJ', [
-			'protocol' => 'http',
-			'domain' => 'localhost:1'
-		]);
+		Fakturan::setup('jWE56VnOHqu-6HgaZyL2', 'LpdLorG0fmPRGOpeOvHSLiuloEHK0O8YsKliVPNY', [ 'domain' => 'localhost:1' ]);
 		
 		$client = Client::find(1);
+		
+		$this->resetConnectionSettings();		
 	}
 	
 	public function testDoesNotThrowResourceNotFoundOnModel()
 	{
-		$client = Client::find(999999999999999999);
+		$client = Client::find(999999999);
 		$this->assertEquals(NULL, $client);
 	}
 	
@@ -58,16 +53,6 @@ class ExceptionTest extends PHPUnit_Framework_TestCase
 		$client = new Client(['name' => false]);
 		$client->save();
 		$this->assertEquals(true, (bool) $client->errors());
-	}
-	
-	# Fixture includes an answer with 500-error
-	public function testThrowsServerError()
-	{
-		$this->setExpectedException('Fakturan\Error\ServerError');
-		$client = Client::find(99999999999999999999999999999);
-	}
-
-	
-	
+	}	
 	
 }

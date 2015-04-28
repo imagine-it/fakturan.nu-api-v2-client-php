@@ -65,13 +65,13 @@ class Collection implements \Iterator {
 	#
 	#
 	public function nextPage()
-	{
-		if($this->totalPages() > $this->currentPage())
+	{		
+		if(!$this->pagination->next)
 		{
-			return call_user_func(get_class($this->model) . '::all', ['page' => $this->currentPage() + 1]);
-			return self::fetch($this->model, ['page' => $this->currentPage() + 1]);
+			return null;
 		}
-		return null;
+		
+		return call_user_func(get_class($this->model) . '::all', $this->parseQueryString($this->pagination->next));
 	}
 	
 	#
@@ -79,12 +79,12 @@ class Collection implements \Iterator {
 	#
 	public function previousPage()
 	{
-		if($this->currentPage !== 1 AND $this->totalPages() < $this->currentPage())
+		if(!$this->pagination->previous)
 		{
-			return call_user_func($this->model->name. '::fetch', ['page' => $this->currentPage() - 1]);
-			return self::fetch($this->model, ['page' => $this->currentPage() - 1]);
+			return null;
 		}
-		return null;
+		
+		return call_user_func(get_class($this->model) . '::all', $this->parseQueryString($this->pagination->previous));
 	}
 	
 	#
@@ -120,6 +120,16 @@ class Collection implements \Iterator {
 	#
 	function valid() {
 		return isset($this->collection[$this->position]);
+	}
+	
+	#
+	#
+	#
+	private function parseQueryString($string)
+	{
+		$queryString = substr($string, strrpos($string, '?') + 1);
+		parse_str($queryString, $arr);
+		return $arr;
 	}
 
 }

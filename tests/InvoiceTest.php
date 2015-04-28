@@ -10,16 +10,23 @@ class InvoiceTest extends PHPUnit_Framework_TestCase
 
 	protected static $invoice_defaults;
 	
+	protected static $product_defaults;
+	
 	public static function setUpBeforeClass()
 	{	
 		self::$invoice_defaults = ['date' => '2015-01-01'];
 		
-		VCR::insertCassette('invoice_requests');
+		self::$product_defaults = [
+			'product_id' => 2,
+			'product_code' => '',			
+			'product_name' => 'A simple product', 
+			'product_unit' => 'ST', 
+			'product_price' => '200.0',
+			'product_tax' => 25,
+			'amount' => 5
+		];		
 		
-		Fakturan::setup('-VrmL6FGj6c61srVkM9H', 'bVSNkch6dam9R0-8OKwIGK1YRdbtefEYy-fFTDTJ', [
-			'protocol' => 'http',
-			'domain' => '0.0.0.0:3000'
-		]);
+		VCR::insertCassette('invoice_requests');
 	} 
 	
 
@@ -32,21 +39,11 @@ class InvoiceTest extends PHPUnit_Framework_TestCase
 	{
 		$invoice = new Invoice(self::$invoice_defaults);
 		
-		$product = Product::find(31);
+		$product = Product::find(2);
 		
-		$invoice->addRow($product, ['amount' => 5, 'product_price' => '50.0']);
+		$invoice->addRow($product, ['amount' => 5, 'product_price' => '200.0']);
 		
-		$expected = [
-			'product_id' => 31,
-			'product_code' => '',			
-			'product_name' => '.com domän', 
-			'product_unit' => 'år', 
-			'product_price' => '50.0',
-			'product_tax' => 25,
-			'amount' => 5
-		];
-		
-		$this->assertEquals([$expected], $invoice->rows);
+		$this->assertEquals([self::$product_defaults], $invoice->rows);
 	}
 	
 	
@@ -54,51 +51,31 @@ class InvoiceTest extends PHPUnit_Framework_TestCase
 	{
 		$invoice = new Invoice(self::$invoice_defaults);
 		
-		$expected = [
-			'product_id' => 31,
-			'product_code' => '',			
-			'product_name' => '.com domän', 
-			'product_unit' => 'år', 
-			'product_price' => '49.0',
-			'product_tax' => 25,
-			'amount' => 5
-		];
-		
-		$invoice->rows = [$expected];
+		$invoice->rows = [self::$product_defaults];
 			
-		$this->assertEquals([$expected], $invoice->rows);
+		$this->assertEquals([self::$product_defaults], $invoice->rows);
 	}
 	
 	public function testCanAddRowsFromArray()
 	{
 		$invoice = new Invoice(self::$invoice_defaults);
 		
-		$expected = [
-			'product_id' => 31,
-			'product_code' => '',			
-			'product_name' => '.com domän', 
-			'product_unit' => 'år', 
-			'product_price' => '49.0',
-			'product_tax' => 25,
-			'amount' => 5
-		];
-		
-		$invoice->addRow($expected);
+		$invoice->addRow(self::$product_defaults);
 			
-		$this->assertEquals([$expected], $invoice->rows);
+		$this->assertEquals([self::$product_defaults], $invoice->rows);
 
 	}
 	
 	public function testCanSaveInvoiceWithMultipleRows()
 	{
 		$invoice = new Invoice(self::$invoice_defaults);
-		$invoice->client_id = 2;
+		$invoice->client_id = 11;
 
-		$product = Product::find(31);
+		$product = Product::find(2);
 		
-		$invoice->addRow($product, ['amount' => '5', 'product_price' => '50.0']);
-		$invoice->addRow($product, ['amount' => '5', 'product_price' => '51.0']);
-		$invoice->addRow($product, ['amount' => '5', 'product_price' => '52.0']);
+		$invoice->addRow($product, ['amount' => 5, 'product_price' => '50.0']);
+		$invoice->addRow($product, ['amount' => 5, 'product_price' => '51.0']);
+		$invoice->addRow($product, ['amount' => 5, 'product_price' => '52.0']);
 			
 		$this->assertEquals(true, $invoice->save());
 	}

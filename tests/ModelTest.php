@@ -11,14 +11,11 @@ class ModelTest extends PHPUnit_Framework_TestCase
 {
 
 	protected static $model;
+	protected static $createdModelId;
 	
 	public static function setUpBeforeClass()
 	{		
 		VCR::insertCassette('base_model_requests');
-		Fakturan::setup('-VrmL6FGj6c61srVkM9H', 'bVSNkch6dam9R0-8OKwIGK1YRdbtefEYy-fFTDTJ', [
-			'protocol' => 'http',
-			'domain' => '0.0.0.0:3000'
-		]);
 	} 
 
 	
@@ -42,9 +39,9 @@ class ModelTest extends PHPUnit_Framework_TestCase
 	
 	public function testFindSingleRecord()
 	{
-		$record = TestModel::find(1);
+		$record = TestModel::find(2);
 		
-		$this->assertEquals(['id' => 1, 'record' => 'found'], $record->attributes());
+		$this->assertEquals(['id' => 2], $record->attributes(['id']));
 	}
 	
 	public function testFindRecordCollection()
@@ -63,21 +60,23 @@ class ModelTest extends PHPUnit_Framework_TestCase
 		{
 			$i++;
 		}
-		$this->assertEquals(3, $i);
-		$this->assertEquals(3, $collection->count());
+		
+		$this->assertEquals(30, $i);
+		$this->assertEquals(30, $collection->count());
 	}
 	
 	public function testReturnTrueOnSave()
 	{
-		$model = new TestModel(['name' => 'test']);		
+		$model = new TestModel(['name' => 'A simple product', 'price' => 200]);		
 		$this->assertEquals(true, $model->save());
+		self::$createdModelId = $model->id;
 	}
 	
 	public function testUpdateAttributes()
 	{
-		$model = TestModel::find(76841);
+		$model = TestModel::find(2);
 		$model->updateAttributes(['name' => 'changed name']);
-		$this->assertEquals(['id' => 76841, 'name' => 'changed name'], $model->attributes(['id', 'name']));
+		$this->assertEquals(['id' => 2, 'name' => 'changed name'], $model->attributes(['id', 'name']));
 	}
 
 
@@ -90,16 +89,15 @@ class ModelTest extends PHPUnit_Framework_TestCase
 	
 	public function testCanUpdatePersistentItem()
 	{
-		$item = TestModel::find(31);
-		$item->record = 'new';
+		$item = TestModel::find(2);
 		$this->assertEquals(true, $item->save());
-		$this->assertEquals(['id' => 31, 'record' => 'new'], ['id' => $item->id, 'record' => $item->record]);
+		$this->assertEquals(['id' => 2, 'name' => 'A simple product'], ['id' => $item->id, 'name' => $item->name]);
 	}	
 	
 
 	public function testCanDestroyItem()
 	{
-		$item = TestModel::find(76840);
+		$item = TestModel::find(self::$createdModelId);
 		$this->assertEquals(true, $item->destroy());
 	}
 }
