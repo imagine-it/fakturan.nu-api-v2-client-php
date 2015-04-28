@@ -28,14 +28,7 @@ Fakturan\Fakturan::setup('KEY_ID', 'PASSWORD', [
 Retrieve all your products
 
 ```php
-try 
-{
-  Fakturan\Model\Product::all();
-}
-catch(Fakturan\Error\FakturanException $e)
-{
-  // You can catch all errors with Fakturan\Error\FakturanException. For more specific exceptions see the [Errors section](#user-content-errors).
-}
+Fakturan\Model\Product::all();
 ```
 Create a new product
 
@@ -44,53 +37,29 @@ $new_product = new Fakturan\Model\Product();
 $new_product->name = 'My new shiny product';
 $new_product->unit = 'KG';
 $new_product->price = 450;
-try
-{
-  $new_product->save();
-}
-catch(Fakturan\Error\FakturanException $e)
-{
-  // You can catch all errors with Fakturan\Error\FakturanException. For more specific exceptions see the [Errors section](#user-content-errors).
-}
+
+$new_product->save();
 ```
   
 Get a single product with id 54
 
 ```php
-try {
-  $book = Fakturan\Model\Product::find(54);
-}
-catch(Fakturan\Error\FakturanException $e)
-{
-  // You can catch all errors with Fakturan\Error\FakturanException. For more specific exceptions see the [Errors section](#user-content-errors).
-}
+$book = Fakturan\Model\Product::find(54);
 ```
   
 Edit product
 
 ```php
-try {
-  $book = Fakturan\Model\Product::find(54);
-  $book->price = 25;
-  $book->save();
-}
-catch(Fakturan\Error\FakturanException $e)
-{
-  // You can catch all errors with Fakturan\Error\FakturanException. For more specific exceptions see the [Errors section](#user-content-errors).
-}
+$book = Fakturan\Model\Product::find(54);
+$book->price = 25;
+$book->save();
 ```
   
 Delete a product
 
 ```php
 $product_to_be_deleted = Fakturan\Model\Product::find(54);
-try {
-  $product_to_be_deleted->destroy();
-}
-catch(Fakturan\Error\FakturanException $e)
-{
-  // You can catch all errors with Fakturan\Error\FakturanException. For more specific exceptions see the [Errors section](#user-content-errors).
-}
+$product_to_be_deleted->destroy();
 ``` 
 
 
@@ -111,10 +80,12 @@ As they all inherits from `Fakturan\Error\FakturanException` they can all be cau
 
 ```php
 try {
-
+	// Methods that sends a request to the server
 }
 catch(Fakturan\Error\FakturanException $e) 
 {
   echo $e->getMessage();
 }
 ```
+
+When in production we recommend you to always use a try-catch block when using `save`, `update_attributes` and `delete`
