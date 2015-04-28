@@ -1,5 +1,5 @@
 #Fakturan.nu REST API client PHP
-API-client in PHP for the web based software of [Fakturan.nu](https://fakturan.nu). Documentation can be viewed at [API documentation](https://sandbox.fakturan.nu/apidocs/).
+API-client in PHP for the web based software of [Fakturan.nu](https://fakturan.nu). Documentation can be viewed at [API documentation](https://fakturan.nu/apidocs/).
 
 ##Getting started
 
