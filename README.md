@@ -76,7 +76,7 @@ $product = Fakturan\Product::find(24);
 
 // Add the product to the invoice. The second parameter can override the default values.
 // It is used to set the amount and makes it possible to add a discount.
-// For all options on rows see https://fakturan.nu/apidocs/2/invoices/create.html
+// See https://fakturan.nu/apidocs/2/invoices/create.html for possible attributes on rows.
 $invoice->addRow($product, ['amount' => 5]);
 
 // It is also possible to add rows without a preset product by sending an array instead:
