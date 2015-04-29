@@ -33,7 +33,7 @@ Fakturan\Model\Product::all();
 Create a new product
 
 ```php
-$new_product = new Fakturan\Model\Product();
+$new_product = new Fakturan\Product();
 $new_product->name = 'My new shiny product';
 $new_product->unit = 'KG';
 $new_product->price = 450;
@@ -44,13 +44,13 @@ $new_product->save();
 Get a single product with id 54
 
 ```php
-$book = Fakturan\Model\Product::find(54);
+$book = Fakturan\Product::find(54);
 ```
   
 Edit product
 
 ```php
-$book = Fakturan\Model\Product::find(54);
+$book = Fakturan\Product::find(54);
 $book->price = 25;
 $book->save();
 ```
@@ -58,9 +58,42 @@ $book->save();
 Delete a product
 
 ```php
-$product_to_be_deleted = Fakturan\Model\Product::find(54);
+$product_to_be_deleted = Fakturan\Product::find(54);
 $product_to_be_deleted->destroy();
 ``` 
+
+Create an invoice
+```php
+// Find your client
+$client = Fakturan\Client::find(1);
+
+$invoice = new Fakturan\Invoice();
+$invoice->client_id = $client->id;
+$invoice->date = date('Y-m-d');
+
+// Find a product to use for templating
+$product = Fakturan\Product::find(24);
+
+// Add the product to the invoice. The second parameter can override the default values.
+// It is used to set the amount and makes it possible to add a discount.
+// For all options on rows see https://fakturan.nu/apidocs/2/invoices/create.html
+$invoice->addRow($product, ['amount' => 5]);
+
+// It is also possible to add rows without a preset product by sending an array instead:
+$row = [
+	'product_name' => 'My custom product',
+	'unit' => 'PCS',
+	'price' => 500,
+	'amount' => 24
+];
+$invoice->addRow($row)
+
+// Rows only consisting of text can also be added
+$invoice->addRow(['text_row' => true, 'text' => 'Performed customizations: purple flames']);
+
+$invoice->save();
+
+```
 
 
 ###Errors
