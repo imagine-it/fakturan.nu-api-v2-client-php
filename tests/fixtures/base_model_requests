@@ -265,3 +265,37 @@
             Status: '204 No Content'
             Content-Length: '0'
             Content-Type: text/plain
+-
+    request:
+        method: GET
+        url: 'https://sandbox.fakturan.nu/api/v2/clients'
+        headers:
+            Host: sandbox.fakturan.nu
+            Expect: null
+            Authorization: 'Basic aldFNTZWbk9IcXUtNkhnYVp5TDI6THBkTG9yRzBmbVBSR09wZU92SFNMaXVsb0VISzBPOFlzS2xpVlBOWQ=='
+            Accept: application/json
+            Accept-Encoding: utf-8
+            User-Agent: 'Guzzle/5.2.0 curl/7.37.1 PHP/5.6.5'
+            Content-Type: application/json
+        body: '{"number":2}'
+    response:
+        status:
+            http_version: '1.1'
+            code: '200'
+            message: OK
+        headers:
+            Date: 'Mon, 11 May 2015 14:20:39 GMT'
+            Server: 'Apache/2.2.14 (Ubuntu)'
+            Strict-Transport-Security: max-age=31536000
+            X-Frame-Options: SAMEORIGIN
+            X-XSS-Protection: '1; mode=block'
+            X-Content-Type-Options: nosniff
+            ETag: '"3c9a042bd1ab0ec74a2927cc70e5bc7b"'
+            Cache-Control: 'max-age=0, private, must-revalidate'
+            X-Request-Id: 37499990-588d-45bf-8920-297cb5073a10
+            X-Runtime: '0.018239'
+            X-Powered-By: 'Phusion Passenger 4.0.50'
+            Status: '200 OK'
+            Transfer-Encoding: chunked
+            Content-Type: 'application/json; charset=utf-8'
+        body: '{"data":[{"id":12,"number":2,"name":"Imagine it AB","first_name":"","last_name":"","email":"","fax":"","phone":"","home_phone":"","mobile_phone":"","client_type":"company","org_number":"","settings":{"invoice_delivery_method":"email","locale":"sv","invoice_days":30,"invoice_template":"original","tax":25,"discount":0,"prices_inc_tax":"no","show_product_code":false,"currency":"SEK"},"address":{"street_address":"","care_of":"","zip_code":"","city":"","country":"SE"}}],"paging":{"total_pages":1,"current_page":1,"next":null,"previous":null}}'

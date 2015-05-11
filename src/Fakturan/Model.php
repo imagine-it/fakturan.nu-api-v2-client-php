@@ -42,6 +42,14 @@ class Model {
 	}
 	
 	/**
+	 *
+	 */
+	public static function findBy($params)
+	{
+		return self::fetch(null, $params)->current();
+	}
+	
+	/**
 	 * 
 	 */
 	public static function all($params = [])

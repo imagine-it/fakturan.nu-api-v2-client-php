@@ -2,6 +2,7 @@
 
 use Fakturan\Fakturan;	
 use Fakturan\Model;	
+use Fakturan\Client;
 use Fakturan\Product;
 use VCR\VCR;
 
@@ -49,6 +50,13 @@ class ModelTest extends PHPUnit_Framework_TestCase
 		$collection = TestModel::all();
 		
 		$this->assertInstanceOf('Fakturan\Resources\Collection', $collection);
+	}
+	
+	public function testFindSingleRecordWithFindBy()
+	{
+		$record = Client::findBy(['number' => 2]);
+		
+		$this->assertEquals(2, $record->number);
 	}
 	
 	public function testCanIterateCollection()
