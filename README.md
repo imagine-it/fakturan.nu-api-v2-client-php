@@ -49,7 +49,7 @@ $book = Fakturan\Product::find(54);
 
 Get a single product via search
 ```php
-$client = Fakturan\Client::findBy(['number' => 2]);
+$product = Fakturan\Product::findBy(['product_code' => 2]);
 ```
   
 Edit product
